@@ -50,10 +50,11 @@ with connection.cursor() as cursor:
 
         #работа с данными
         for valute in valutes:
+            
             val = float(info["Valute"][valute]["Value"])
             query = 'INSERT INTO vals(name, date, value) VALUES (%s, %s, %s)'
-            print("INSERTING " + valute + " with value " + str(val))
-            cursor.execute(query, (valute, curDate, val))
+            print("INSERTING " + valute + " with value " + str(val / float(info["Valute"][valute]["Nominal"])))
+            cursor.execute(query, (valute, curDate, val / float(info["Valute"][valute]["Nominal"])))
             connection.commit()
 
         # переход к предыдущему дню
