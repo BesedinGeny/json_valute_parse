@@ -7,8 +7,8 @@ from pymysql.cursors import DictCursor
 #Вход в бд, позже надо сделать пароль и логин из файла и файл бы спрятать
 connection = pymysql.connect(
     host='localhost',
-    user='Geny',
-    password='Geny1601',
+    user='user',
+    password='User12345!',
     db='valutes',
     charset='utf8mb4',
     cursorclass=DictCursor
@@ -40,7 +40,7 @@ prevUrl = prevUrl[2:]
 
 
 
-
+#Работа с бд с помощью курсора
 with connection.cursor() as cursor:
     while curDate > lastDate:
         
@@ -68,8 +68,4 @@ with connection.cursor() as cursor:
         curDate = curDate[:10].replace("-", "")
         curDate = datetime.datetime.strptime(curDate, '%Y%m%d').date()
     
-
-#работа с бд 
-#with connection.cursor() as cursor:
-    #some code
 connection.close()
